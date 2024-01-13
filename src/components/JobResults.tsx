@@ -23,10 +23,18 @@ export const JobResults = async ({ filterValues: { q, type, location, remote } }
         ],
     } : {}
 
+    const where: Prisma.JobWhereInput = {
+        AND: [
+            searchFilter,
+            type ? { type } : {},
+            location ? { location } : {},
+            remote ? { locationType: 'Remote' } : {},
+            { approved: true }
+        ]
+    }
+
     const jobs = await prisma.job.findMany({
-        where: {
-            approved: true
-        },
+        where,
         orderBy: { createdAt: 'desc' },
     })
 
@@ -35,6 +43,11 @@ export const JobResults = async ({ filterValues: { q, type, location, remote } }
             {jobs.map((job) => (
                 <JobListItem job={job} key={job.id} />
             ))}
+            {!jobs.length ? (
+                <p className='text-center m-auto'>
+                    No jobs found. Try adjusting your search filters.
+                </p>
+            ) : null}
         </div>
     )
 }
