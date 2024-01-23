@@ -27,6 +27,7 @@ export const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(({
     return (
         <div className='relative'>
             <Input
+                autoComplete='off'
                 placeholder='Search for a city'
                 type='search'
                 value={locationSearchInput}

@@ -15,7 +15,7 @@ const applicationSchema = z.object({
     applicationUrl: z.string().max(100).url('Invalid url address').optional().or(z.literal('')),
 }).refine((data) => data.applicationEmail || data.applicationUrl, {
     message: 'Either email or url is required',
-    path: ['applicationEmail', 'applicationUrl'],
+    path: ['applicationEmail'],
 })
 
 const locationSchema = z.object({
