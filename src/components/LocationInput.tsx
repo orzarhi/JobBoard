@@ -57,3 +57,5 @@ export const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(({
         </div>
     )
 })
+
+LocationInput.displayName = 'LocationInput'

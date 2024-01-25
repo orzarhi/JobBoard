@@ -3,6 +3,7 @@ import { JobListItem } from './JobListItem'
 import prisma from '@/lib/prisma'
 import { JobFilterValues } from '@/lib/validation/jobFilter'
 import { Prisma } from '@prisma/client'
+import Link from 'next/link'
 
 
 interface JobResultsProps {
@@ -41,7 +42,9 @@ export const JobResults = async ({ filterValues: { q, type, location, remote } }
     return (
         <div className='space-y-4 grow'>
             {jobs.map((job) => (
-                <JobListItem job={job} key={job.id} />
+                <Link href={`/jobs/${job.slug}`} key={job.id} className='block'>
+                    <JobListItem job={job} />
+                </Link>
             ))}
             {!jobs.length ? (
                 <p className='text-center m-auto'>

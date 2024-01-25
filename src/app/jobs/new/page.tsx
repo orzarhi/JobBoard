@@ -1,7 +1,7 @@
 import { NewJobForm } from "@/components/NewJobForm"
 import { Metadata } from "next"
 
-export const metaData: Metadata = {
+export const metadata: Metadata = {
     title: 'Post a new job',
 }
 

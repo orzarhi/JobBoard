@@ -29,3 +29,5 @@ export const RichTextEditor = forwardRef<object, EditorProps>((props, ref) => {
         />
     )
 })
+
+RichTextEditor.displayName = 'RichTextEditor'

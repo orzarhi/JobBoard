@@ -14,3 +14,5 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(({ className, .
         </div>
     )
 })
+
+Select.displayName = 'Select'
