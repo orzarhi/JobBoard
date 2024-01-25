@@ -1,30 +1,11 @@
+import { filterJobs } from '@/lib/actions'
 import { jobTypes } from '@/lib/job-types'
+import prisma from '@/lib/prisma'
+import { JobFilterValues } from '@/lib/validation/jobFilter'
+import { FormSubmitButton } from './FormSubmitButton'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Select } from './ui/select'
-import prisma from '@/lib/prisma'
-import { Button } from './ui/button'
-import { JobFilterValues, jobFilterSchema } from '@/lib/validation/jobFilter'
-import { redirect } from 'next/navigation'
-import { FormSubmitButton } from './FormSubmitButton'
-
-const filterJobs = async (formData: FormData) => {
-    'use server'
-
-    const values = Object.fromEntries(formData.entries())
-
-    const { q, type, location, remote } = jobFilterSchema.parse(values)
-
-    const searchParams = new URLSearchParams({
-        ...(q && { q: q.trim() }),
-        ...(type && { type }),
-        ...(location && { location }),
-        ...(remote && { remote: 'true' })
-    })
-
-    redirect(`/?${searchParams.toString()}`)
-
-}
 
 interface JobFilterSidebarProps {
     defaultValues: JobFilterValues

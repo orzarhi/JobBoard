@@ -12,3 +12,5 @@ export const formatMoney = (amount: number) =>
 
 export const relativeDate = (from: Date) =>
     formatDistanceToNowStrict(from, { addSuffix: true })
+
+export const toSlug = (str: string) => str.toLocaleLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')

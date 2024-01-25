@@ -14,6 +14,8 @@ import { Label } from './ui/label'
 import { RichTextEditor } from './RichTextEditor'
 import { draftToMarkdown } from 'markdown-draft-js'
 import { LoadingButton } from './LoadingButton'
+import { createJobPosting } from '@/lib/actions'
+import { toast } from 'sonner'
 
 export const NewJobForm = () => {
     const form = useForm<CreateJobValues>({
@@ -22,8 +24,20 @@ export const NewJobForm = () => {
 
     const { handleSubmit, watch, trigger, control, setValue, setFocus, formState: { isSubmitting } } = form
 
-    const onSubmit = (values: CreateJobValues) => {
-        console.log(values)
+    const onSubmit = async (values: CreateJobValues) => {
+        const formData = new FormData()
+
+        Object.entries(values).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value)
+            }
+        })
+
+        try {
+            await createJobPosting(formData)
+        } catch (error) {
+            toast.error('Something went wrong, please try again.')
+        }
     }
 
     return (
