@@ -5,14 +5,12 @@ import { useFormStatus } from "react-dom";
 import { LoadingButton } from "./LoadingButton";
 
 interface FormSubmitButtonProps extends HTMLAttributes<HTMLButtonElement> {
-    disabled?: boolean,
-    children: ReactNode,
-}
 
-export const FormSubmitButton = ({ children, disabled, ...props }: FormSubmitButtonProps) => {
+}
+export const FormSubmitButton = ({ ...props }: FormSubmitButtonProps) => {
     const { pending } = useFormStatus()
 
     return (
-        <LoadingButton loading={pending} type="submit"  {...props} />
+        <LoadingButton {...props} loading={pending} type="submit" />
     )
 }
