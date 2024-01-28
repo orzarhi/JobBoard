@@ -19,7 +19,7 @@ export const JobFilterSidebar = async ({ defaultValues }: JobFilterSidebarProps)
     }).then(locations => locations.map(({ location }) => location).filter(Boolean))) as string[]
 
     return (
-        <aside className='md:w-[260px] p-4 sticky top-0 h-fit bg-background border rounded-lg' >
+        <aside className='md:w-[260px] p-4 h-fit bg-background border rounded-lg' >
             <form action={filterJobs} key={JSON.stringify(defaultValues)}>
                 <div className='space-y-4'>
                     <div className='flex flex-col gap-2'>
